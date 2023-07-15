@@ -36,7 +36,7 @@ VALUES ($1, $2, $3, $4);
       feedback.feeling,
       feedback.understanding,
       feedback.support,
-      feedback.comments,
+      feedback.comments
     ])
     .then((result) => {
       console.log("Feedback sent to database!");
