@@ -18,19 +18,23 @@ export const feedback = (
   action
 ) => {
   // Conditionals for actions
-    if(action.type === "ADD_FEELING") {
-        // Creating new 'feeling' property with payload as value
-        state.feeling = (action.payload);
-        return state;
-    } else if(action.type === "ADD_UNDERSTANDING") {
-      // Creating new 'understanding' property with payload as value
-      state.understanding = action.payload;
-      return state;
-    } else if(action.type === "ADD_SUPPORT") {
-      // Creating new 'support' property with payload as value
-      state.support = action.payload;
-      return state;
-    }
+  if (action.type === "ADD_FEELING") {
+    // Creating new 'feeling' property with payload as value
+    state.feeling = action.payload;
+    return state;
+  } else if (action.type === "ADD_UNDERSTANDING") {
+    // Creating new 'understanding' property with payload as value
+    state.understanding = action.payload;
+    return state;
+  } else if (action.type === "ADD_SUPPORT") {
+    // Creating new 'support' property with payload as value
+    state.support = action.payload;
+    return state;
+  } else if (action.type === "ADD_COMMENT") {
+    // Creating new 'support' property with payload as value
+    state.comments = action.payload;
+    return state;
+  }
 
   return state;
 }; // * end feedback
