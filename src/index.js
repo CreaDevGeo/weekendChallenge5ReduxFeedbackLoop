@@ -34,6 +34,10 @@ export const feedback = (
     // Creating new 'support' property with payload as value
     state.comments = action.payload;
     return state;
+  } else if (action.type === "EMPTY_FEEDBACK") {
+    // Creating new 'support' property with payload as value
+    state = {}
+    return state;
   }
 
   return state;
