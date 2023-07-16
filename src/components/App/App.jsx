@@ -9,6 +9,8 @@ import { HashRouter as Router, Route } from "react-router-dom";
 import { useSelector } from 'react-redux/es/hooks/useSelector.js';
 // Components
 import Feeling from '../Feeling/Feeling.jsx';
+import Understanding from '../Understanding/Understanding.jsx';
+import Support from '../Support/Support.jsx';
 
 function App() {
 
@@ -17,16 +19,26 @@ function App() {
 
   return (
     <Router>
-      <div className='App'>
-        <header className='App-header'>
-          <h1 className='App-title'>Feedback!</h1>
+      <div className="App">
+        <header className="App-header">
+          <h1 className="App-title">Feedback!</h1>
           <h4>Don't forget it!</h4>
         </header>
 
-      {/* Feeling Component; Home Page */}
-      <Route exact path='/'>
-      <Feeling />
-      </Route>
+        {/* Feeling Component; First/Home Page */}
+        <Route exact path="/">
+          <Feeling />
+        </Route>
+
+        {/* Understanding Component; Second Page */}
+        <Route exact path="/understanding">
+          <Understanding />
+        </Route>
+
+        {/* Support Component; Third Page */}
+        <Route exact path="/support">
+          <Support />
+        </Route>
 
       </div>
     </Router>

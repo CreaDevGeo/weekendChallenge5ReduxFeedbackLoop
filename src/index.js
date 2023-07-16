@@ -22,6 +22,14 @@ export const feedback = (
         // Creating new 'feeling' property with payload as value
         state.feeling = (action.payload);
         return state;
+    } else if(action.type === "ADD_UNDERSTANDING") {
+      // Creating new 'understanding' property with payload as value
+      state.understanding = action.payload;
+      return state;
+    } else if(action.type === "ADD_SUPPORT") {
+      // Creating new 'support' property with payload as value
+      state.support = action.payload;
+      return state;
     }
 
   return state;
