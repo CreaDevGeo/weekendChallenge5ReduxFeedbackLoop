@@ -2,24 +2,31 @@
 import React from "react";
 import "./index.css";
 import App from "./components/App/App";
-// React component DOM routing
+// * React component DOM routing
 import ReactDOM from "react-dom/client";
-// Redux
+// * Redux
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import logger from "redux-logger";
 
 // - REDUCERS -
-// Feedback reducer
+// * Feedback reducer
 export const feedback = (
   // Parameters
   // State starting as object with properties that have no values
-  state = { feeling: "", understanding: "", support: "", comments: "" },
+  state = {},
   action
 ) => {
   // Conditionals for actions
+    if(action.type === "ADD_FEELING") {
+        // Creating new 'feeling' property with payload as value
+        state.feeling = (action.payload);
+        return state;
+    }
+
   return state;
-};
+}; // * end feedback
+// Final feedback state will look like: {feedback: "", understanding: "", support: "", comments: ""}
 
 // - REDUX STORE -
 const store = createStore(

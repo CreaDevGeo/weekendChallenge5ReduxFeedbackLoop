@@ -7,6 +7,8 @@ import axios from 'axios';
 import { HashRouter as Router, Route } from "react-router-dom";
 // Redux store state selector
 import { useSelector } from 'react-redux/es/hooks/useSelector.js';
+// Components
+import Feeling from '../Feeling/Feeling.jsx';
 
 function App() {
 
@@ -20,6 +22,12 @@ function App() {
           <h1 className='App-title'>Feedback!</h1>
           <h4>Don't forget it!</h4>
         </header>
+
+      {/* Feeling Component; Home Page */}
+      <Route exact path='/'>
+      <Feeling />
+      </Route>
+
       </div>
     </Router>
   );
