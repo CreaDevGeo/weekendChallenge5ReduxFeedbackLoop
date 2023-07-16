@@ -5,13 +5,15 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 // useHistory to take user to next client route
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-// Feedback state for testing
+// Feedback state for testing and errorPrompt state for authentication
 import { useSelector } from "react-redux";
 
 // - FEELING COMPONENT -
 export default function Feeling() {
   // * State hook for input
   const [feelingInput, setFeelingInput] = useState("");
+  // * State hook for errorPrompt
+  const [errorPrompt, setErrorPrompt] = useState("");
 
   // * Declaring useDispatch as variable
   const dispatch = useDispatch();
@@ -21,6 +23,25 @@ export default function Feeling() {
 
   // * Declaring useHistory as a variable
   const history = useHistory();
+
+  // * Function to authenticate input fields
+  const authenticator = (numberInputValue) => {
+    // Conditionals for authentication
+    // If numberInput is empty, > 10, or NaN
+    if (
+      numberInputValue === "" ||
+      numberInputValue > 10 ||
+      Number.isNaN(numberInputValue)
+    ) {
+      console.log("\tUser must enter enter a number from 1 to 10.");
+
+      setErrorPrompt("Please enter a number from 1 to 10.");
+      return false;
+    } // end conditional
+
+    setErrorPrompt("");
+    return true;
+  }; // * end authenticator
 
   // * Function to clear input fields
   const clearInputFields = () => {
@@ -34,12 +55,20 @@ export default function Feeling() {
 
   // * Function to set local state input value
   const handleStoringFeelingInput = (event) => {
-    setFeelingInput(event.target.value);
+    setFeelingInput(Number(event.target.value));
   }; // * end handleStoringFeelingInput
 
   // * Function to handle next button click
   const handleNextButton = (event) => {
     console.log("\nNext button clicked!");
+
+    // Authenticator function
+    const isValid = authenticator(feelingInput);
+
+    // If the authenticator function returns false, exit the handleNextButton function
+    if (!isValid) {
+      return;
+    }
 
     // Logging
     console.log("feelingInput is:", feelingInput);
@@ -64,6 +93,7 @@ export default function Feeling() {
     <div>
       <h2>How are you feeling today?</h2>
 
+      <p>{errorPrompt}</p>
       <form>
         <fieldset>
           <label>Feeling?</label>
