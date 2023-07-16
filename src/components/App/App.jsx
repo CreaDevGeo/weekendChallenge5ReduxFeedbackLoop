@@ -9,6 +9,7 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 // * Redux store state selector
 import { useSelector } from "react-redux/es/hooks/useSelector.js";
 // * Components
+import Home from "../Home/Home.jsx";
 import Feeling from "../Feeling/Feeling.jsx";
 import Understanding from "../Understanding/Understanding.jsx";
 import Support from "../Support/Support.jsx";
@@ -32,32 +33,37 @@ function App() {
           <h4>Don't forget it!</h4>
         </header>
 
-        {/* Feeling Component; First/Home Page */}
+        {/* Home Component; First/Home Page */}
         <Route exact path="/">
+          <Home />
+        </Route>
+
+        {/* Feeling Component; Second Page */}
+        <Route exact path="/feeling">
           <Feeling />
         </Route>
 
-        {/* Understanding Component; Second Page */}
+        {/* Understanding Component; Third Page */}
         <Route exact path="/understanding">
           <Understanding />
         </Route>
 
-        {/* Support Component; Third Page */}
+        {/* Support Component; Fourth Page */}
         <Route exact path="/support">
           <Support />
         </Route>
 
-        {/* Comments Component; Fourth Page */}
+        {/* Comments Component; Fifth Page */}
         <Route exact path="/comments">
           <Comments />
         </Route>
 
-        {/* Review Component; Fifth Page */}
+        {/* Review Component; Sixth Page */}
         <Route exact path="/review">
           <Review />
         </Route>
-        
-        {/* ThankYou Component; Sixth Page */}
+
+        {/* ThankYou Component; Seventh Page */}
         <Route exact path="/thankYou">
           <ThankYou />
         </Route>

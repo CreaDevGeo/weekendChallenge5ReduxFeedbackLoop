@@ -36,7 +36,7 @@ export const feedback = (
     return state;
   } else if (action.type === "EMPTY_FEEDBACK") {
     // Creating new 'support' property with payload as value
-    state = {}
+    state = {};
     return state;
   }
 
@@ -47,7 +47,7 @@ export const feedback = (
 // - REDUX STORE -
 const store = createStore(
   combineReducers({
-    feedback,
+    feedback
   }),
   applyMiddleware(logger)
 );

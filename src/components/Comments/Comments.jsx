@@ -12,15 +12,31 @@ import { useSelector } from "react-redux";
 export default function Comments() {
   // * State hook for input
   const [commentsInput, setCommentsInput] = useState("");
+  // * State hook for errorPrompt
+  const [errorPrompt, setErrorPrompt] = useState("");
 
   // * Declaring useDispatch as variable
   const dispatch = useDispatch();
 
-  // * Declaring feedback redux state
+  // * Declaring feedback state
   const feedback = useSelector((store) => store.feedback);
 
   // * Declaring useHistory as a variable
   const history = useHistory();
+
+  // * Function to authenticate input fields
+  const authenticator = (comment) => {
+    // If comment is empty
+    if (comment === "") {
+      console.log("\tUser must enter a comment into the field.");
+
+      setErrorPrompt("Please enter a comment.");
+      return false;
+    }
+
+    setErrorPrompt("");
+    return true;
+  }; // * end authenticator
 
   // * Function to clear input fields
   const clearInputFields = () => {
@@ -40,6 +56,14 @@ export default function Comments() {
   // * Function to handle next button click
   const handleNextButton = (event) => {
     console.log("\nNext button clicked!");
+
+    // Authenticator function
+    const isValid = authenticator(commentsInput);
+
+    // If the authenticator function returns false, exit the handleNextButton function
+    if (!isValid) {
+      return;
+    }
 
     // Logging
     console.log("commentsInput is:", commentsInput);
@@ -64,6 +88,8 @@ export default function Comments() {
   return (
     <div>
       <h2>Any comments you want to leave?</h2>
+
+      <p>{errorPrompt}</p>
 
       <form>
         <fieldset>

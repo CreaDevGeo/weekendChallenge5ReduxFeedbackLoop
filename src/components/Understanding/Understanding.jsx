@@ -12,15 +12,36 @@ import { useSelector } from "react-redux";
 export default function Understanding() {
   // * State hook for input
   const [understandingInput, setUnderstandingInput] = useState("");
+  // * State hook for errorPrompt
+  const [errorPrompt, setErrorPrompt] = useState("");
 
   // * Declaring useDispatch as variable
   const dispatch = useDispatch();
 
-  // * Declaring feedback redux state
+  // * Declaring feedback state
   const feedback = useSelector((store) => store.feedback);
 
   // * Declaring useHistory as a variable
   const history = useHistory();
+
+  // * Function to authenticate input fields
+  const authenticator = (numberInputValue) => {
+    // Conditionals for authentication
+    // If numberInput is empty, > 10, or NaN
+    if (
+      numberInputValue === "" ||
+      numberInputValue > 10 ||
+      Number.isNaN(numberInputValue)
+    ) {
+      console.log("\tUser must enter a value into the field.");
+
+      setErrorPrompt("Please enter a number from 1 to 10.");
+      return false;
+    } // end conditional
+
+    setErrorPrompt("");
+    return true;
+  }; // * end authenticator
 
   // * Function to clear input fields
   const clearInputFields = () => {
@@ -34,12 +55,20 @@ export default function Understanding() {
 
   // * Function to set local state input value
   const handleStoringUnderstandingInput = (event) => {
-    setUnderstandingInput(event.target.value);
+    setUnderstandingInput(Number(event.target.value));
   }; // * end handleStoringUnderstandingInput
 
   // * Function to handle next button click
   const handleNextButton = (event) => {
     console.log("\nNext button clicked!");
+
+    // Authenticator function
+    const isValid = authenticator(understandingInput);
+
+    // If the authenticator function returns false, exit the handleNextButton function
+    if (!isValid) {
+      return;
+    }
 
     // Logging
     console.log("understandingInput is:", understandingInput);
@@ -63,6 +92,8 @@ export default function Understanding() {
   return (
     <div>
       <h2>How well are you understanding the content?</h2>
+
+      <p>{errorPrompt}</p>
 
       <form>
         <fieldset>
