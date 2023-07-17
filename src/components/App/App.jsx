@@ -30,7 +30,6 @@ function App() {
           <Link to="/">
             <h1 className="App-title">Feedback!</h1>
           </Link>
-          <h4>Don't forget it!</h4>
         </header>
 
         {/* Home Component; First/Home Page */}
